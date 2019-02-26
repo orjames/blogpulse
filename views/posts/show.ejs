@@ -1,0 +1,31 @@
+<a href="/">&larr; Back Home</a>
+  <h1><%= post.title %></h1>
+<h2>By: <%= post.author.name %></h2>
+
+<p><%= post.content %></p>
+
+<hr />
+
+<% post.comments.forEach(function(comment) { %>
+  <div class='well'>
+    <h4><%= comment.name %></h4>
+    <div>
+      <%= comment.content %>
+    </div>
+  </div>
+<% }) %>
+
+<hr /><br>
+
+<div class='well'>
+<form action="/posts/<%= post.id %>" method='POST'>
+<input type="text" name="name" placeholder="Input commenter name..." required><br>
+<textarea name="content" cols="30" rows="10" placeholder="Content..." required></textarea><br>
+<input hidden type="text" name='postId' value='<%= post.Id %>'>
+<input type="submit" value='create comment'>
+</form>
+</div>
+
+<br>
+<a href="/">&larr; Back Home</a>
+
