@@ -16,12 +16,12 @@
 <% }) %>
 
 <hr /><br>
-
+<h2>Comments</h2>
 <div class='well'>
-<form action="/posts/<%= post.id %>" method='POST'>
+<form action="/comments" method='POST'>
 <input type="text" name="name" placeholder="Input commenter name..." required><br>
 <textarea name="content" cols="30" rows="10" placeholder="Content..." required></textarea><br>
-<input hidden type="text" name='postId' value='<%= post.Id %>'>
+<input hidden type="text" name='postId' value='<%= post.id %>'>
 <input type="submit" value='create comment'>
 </form>
 </div>

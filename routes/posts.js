@@ -30,8 +30,8 @@ router.get('/new', function( req, res ) {
 // GET /comments - reads all comments for one specific post
 router.get('/:id', function(req, res) {
   db.post.findOne({
-    where: { id: req.params.id },
-    include: [db.comment, db.author]
+    where: { id: parseInt(req.params.id) },
+    include: [db.author, db.comment]
   }).then(function(post) {
     if (!post) throw Error();
     res.render('posts/show', {post});
@@ -40,15 +40,15 @@ router.get('/:id', function(req, res) {
   });
 });
 
-// POST /comments - creates a new comment
-router.post('/:id', function(req, res) {
-  db.comment.create({
-    name: req.body.name,
-    content: req.body.content,
-    postId: req.params.id
-  }).then(function(comment) {
-    res.redirect('/posts/'+req.params.id);
-  });
-});
+// // POST /comments - creates a new comment
+// router.post('/:id', function(req, res) {
+//   db.comment.create({
+//     name: req.body.name,
+//     content: req.body.content,
+//     postId: req.params.id
+//   }).then(function(comment) {
+//     res.redirect('/posts/'+req.params.id);
+//   });
+// });
 
 module.exports = router;
